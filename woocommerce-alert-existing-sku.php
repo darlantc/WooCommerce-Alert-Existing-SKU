@@ -1,7 +1,7 @@
 <?php
 /*
  Plugin Name: WooCommerce Alert Existing SKU
- Version: 1.0
+ Version: 1.01
  Plugin URI: https://github.com/darlantc/WooCommerce-Alert-Existing-SKU
  Description: WooCommerce Addon to verify if the new SKU is unique 
  Author: Darlan ten Caten

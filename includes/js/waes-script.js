@@ -50,10 +50,10 @@ jQuery(document).ready(function($) {
     }
 
     $("#_sku").bind("paste keyup", function() {
-        if ($(this).val().length > 2) {
-            $('#sku-message').hide();
-            $('#sku-list').hide();
-
+        $('#sku-message').hide();
+        $('#sku-list').hide();
+        
+        if ( $(this).val().length > 2 ) {
             // If still waiting cancel
             if (searchDelay) {
                 window.clearTimeout(searchDelay);
