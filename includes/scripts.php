@@ -19,20 +19,21 @@ function waes_load_script( $hook ) {
 
 	// Verify if we are in Product Post Type
 	if ( $post->post_type === 'product' ) { 
+		$params = array(
+		  'gifLoading' => plugin_dir_url( __FILE__ ) . '/images/loading.gif',
+		  'ajaxurl' => admin_url( 'admin-ajax.php' )
+		);
+
 		// Verify if we are Adding or Editing a product
 		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {  
-			wp_register_script( 'waes_script', plugin_dir_url( __FILE__ ).'js/waes-script.js', array('jquery') );
-	        wp_localize_script( 'waes_script', 'waesAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));        
-
-	        wp_enqueue_script( 'waes_script' );
+			wp_register_script( 'waes_script', plugin_dir_url( __FILE__ ) . 'js/waes-script.js', array('jquery') );
 		}
 		// If we are at the Product List add a different script
 		else {
-			wp_register_script( 'waes_script', plugin_dir_url( __FILE__ ).'js/waes-quick-edit-script.js', array('jquery') );
-	        wp_localize_script( 'waes_script', 'waesAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));        
-
-	        wp_enqueue_script( 'waes_script' );
+			wp_register_script( 'waes_script', plugin_dir_url( __FILE__ ) . 'js/waes-quick-edit-script.js', array('jquery') );
 		}
+		wp_localize_script( 'waes_script', 'waesParams', $params );     
+        wp_enqueue_script( 'waes_script' );
 	}
 }
 add_filter('admin_enqueue_scripts', 'waes_load_script');

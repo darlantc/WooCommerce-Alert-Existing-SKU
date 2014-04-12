@@ -2,8 +2,10 @@ jQuery(document).ready(function($) {
 	var searchDelay;
 
     // Adding the span Field to show messages
-    $('._sku_field').append('<span id="sku-message" style="display: none;"></span>');
-    $('._sku_field').append('<div id="sku-list" style="display: none;"></div>');
+    var spanTag = $('input[name="_sku"]').closest('span');
+    spanTag.append('<img id="sku-loading" width="16" height="16" src="{image}" style="display: none;" />'.replace('{image}', waesParams.gifLoading));
+    spanTag.append('<span id="sku-message" style="display: none;"></span><br>');
+    spanTag.append('<div id="sku-list" style="display: none;"></div>');
     $('#sku-list')
         .append('<p>{reference}:</p>'.replace('{reference}', objectL10n.reference))
         .append('<ul id="list-ul"></ul>');
@@ -19,10 +21,13 @@ jQuery(document).ready(function($) {
     function ajaxSearchSku() {
         var spanMessage = $('#sku-message');
 
+         // Show the loaging image
+        $('#sku-loading').show();
+
         var data = {
 	        action: 'waes_load_sku',
 	        postID: $('#post_ID').val(),
-	        newSKU: $('#_sku').val()
+	        newSKU: $('input[name="_sku"]').val()
 	    };
 
         $.ajax({
@@ -44,12 +49,14 @@ jQuery(document).ready(function($) {
                     spanMessage.addClass('error');
                 }
                 spanMessage.html('<strong>' + response['message'] + '</strong>');
+                 // Hide the loading image and display the message
+                $('#sku-loading').hide();
                 spanMessage.show();
             }
         });
     }
 
-    $("#_sku").bind("paste keyup", function() {
+    $('input[name="_sku"]').bind("paste keyup", function() {
         $('#sku-message').hide();
         $('#sku-list').hide();
         
