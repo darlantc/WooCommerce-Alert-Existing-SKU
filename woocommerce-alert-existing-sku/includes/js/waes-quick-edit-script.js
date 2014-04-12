@@ -2,10 +2,11 @@ jQuery(document).ready(function($) {
 	var searchDelay;
 
     // Adding the span Field to show messages
-    $('._sku_field').append('<span id="sku-message" style="display: none;"></span>');
-    $('._sku_field').append('<div id="sku-list" style="display: none;"></div>');
+    var spanTag = $('input[name="_sku"]').closest('span');
+    spanTag.append('<span id="sku-message" style="display: none;"></span><br>');
+    spanTag.append('<div id="sku-list" style="display: none;"></div>');
     $('#sku-list')
-        .append('<p>Referências correspondentes cadastradas:</p>')
+        .append('<p>{reference}:</p>'.replace('{reference}', objectL10n.reference))
         .append('<ul id="list-ul"></ul>');
     
     function fillList (sku_list) {
@@ -22,7 +23,7 @@ jQuery(document).ready(function($) {
         var data = {
 	        action: 'waes_load_sku',
 	        postID: $('#post_ID').val(),
-	        newSKU: $('#_sku').val()
+	        newSKU: $('input[name="_sku"]').val()
 	    };
 
         $.ajax({
@@ -49,7 +50,7 @@ jQuery(document).ready(function($) {
         });
     }
 
-    $("#_sku").bind("paste keyup", function() {
+    $('input[name="_sku"]').bind("paste keyup", function() {
         $('#sku-message').hide();
         $('#sku-list').hide();
         
