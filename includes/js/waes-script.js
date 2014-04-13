@@ -1,6 +1,9 @@
 jQuery(document).ready(function($) {
 	var searchDelay;
 
+    // Disabling the autocomplete in the sku field
+    $('#_sku').attr( 'autocomplete', 'off' );
+
     // Adding the span Field to show messages
     $('._sku_field').append('<img id="sku-loading" width="16" height="16" src="{image}" style="display: none;" />'.replace('{image}', waesParams.gifLoading));
     $('._sku_field').append('<span id="sku-message" style="display: none;"></span>');

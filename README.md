@@ -7,6 +7,9 @@ Under development!
 
 == Changelog ==
 
+= 1.1.3 =
+* Added the attribute autocomplete="off" to WooCommerce SKU field
+
 = 1.1.2 =
 * Fixed code error in version 1.1.1
 

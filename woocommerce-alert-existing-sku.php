@@ -6,7 +6,7 @@
  Text Domain: waes
  Plugin URI: https://github.com/darlantc/WooCommerce-Alert-Existing-SKU
  Description: WooCommerce Addon to verify if the new SKU is unique 
- Version: 1.1.2
+ Version: 1.1.3
  
  ----
 
