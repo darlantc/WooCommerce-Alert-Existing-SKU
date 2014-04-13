@@ -6,7 +6,7 @@
  Text Domain: waes
  Plugin URI: https://github.com/darlantc/WooCommerce-Alert-Existing-SKU
  Description: WooCommerce Addon to verify if the new SKU is unique 
- Version: 1.1.1
+ Version: 1.1.2
  
  ----
 
@@ -102,13 +102,13 @@ function waes_load_sku () {
     $posts = get_posts( $args );
     foreach ( $posts as $post ) {
         $meta = get_post_meta( $post->ID, '_sku', true );
-        $sku_list[] = $meta;
+        $sku_list[] = esc_html( $meta );
         if ( strtolower( $new_sku ) == strtolower( $meta ) ) {
             $valid = false;
             $message = __( 'Código de REFERÊNCIA já existe. Não é permitido duplicar.', 'waes' );
         }
     } 
-    $result = array( 'valid' => $valid, 'message' => $message, 'sku_list' => esc_html( $sku_list ) );
+    $result = array( 'valid' => $valid, 'message' => $message, 'sku_list' => $sku_list );
 
     echo json_encode( $result );
     die();

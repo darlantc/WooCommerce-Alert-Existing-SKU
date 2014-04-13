@@ -7,6 +7,9 @@ Under development!
 
 == Changelog ==
 
+= 1.1.2 =
+* Fixed code error in version 1.1.1
+
 = 1.1.1 =
 * Added sanitize to input data
 * Added esc_html to output data
